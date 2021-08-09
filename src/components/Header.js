@@ -1,8 +1,9 @@
 import { createTheme, MenuItem, TextField, ThemeProvider } from '@material-ui/core';
 import React from 'react';
+import categories from '../data/category';
 import './Header.css';
 
-const Header = () => {
+const Header = ({ category, setCategory, word, setWord }) => {
   const darkTheme = createTheme({
     palette: {
       primary: {
@@ -12,23 +13,35 @@ const Header = () => {
     },
   });
 
+  const handleChange = (language) => {
+    setCategory(language);
+    setWord("");
+  }
+
   return (
     <div className="header">
-      <span className="title">Dictionary w/ ReactJS</span>
+      <span className="title">{word ? word : "Dictionary w/ ReactJS"}</span>
       <div className="inputs">
       <ThemeProvider theme={darkTheme}>
-        <TextField id="outlined-basic" label="Outlined" variant="outlined" />
+        <TextField 
+        className="search" 
+        id="outlined-basic" 
+        label="Word" 
+        value={word}
+        onChange={(e) => setWord(e.target.value)}
+        />
         <TextField
-          id="outlined-select-currency"
+          className="select"
+          id="outlined-select-language"
           select
-          label="Select"
-          helperText="Please select your currency"
-          variant="outlined"
+          label="Language"
+          value={category}
+          onChange={(e) => handleChange(e.target.value)}
+          helperText="Please select language"
         >
-            <MenuItem >
-              Bangla
-            </MenuItem>
-          ))
+          {categories.map((option) => (
+            <MenuItem key={option.label} value={option.label}>{option.value}</MenuItem>
+            ))}
         </TextField>
       </ThemeProvider>
       </div>
