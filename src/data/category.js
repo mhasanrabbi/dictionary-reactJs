@@ -1,5 +1,5 @@
 const categories = [
-  { value: "English", label: "en" },
+  { value: "English", label: "en_US" },
   { value: "Hindi", label: "hi" },
   { value: "Spanish", label: "es" },
   { value: "French", label: "fr" },

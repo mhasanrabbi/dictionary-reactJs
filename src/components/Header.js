@@ -3,13 +3,13 @@ import React from 'react';
 import categories from '../data/category';
 import './Header.css';
 
-const Header = ({ category, setCategory, word, setWord }) => {
+const Header = ({ category, setCategory, word, setWord, LightMode }) => {
   const darkTheme = createTheme({
     palette: {
       primary: {
-        main: "#f3f2fe",
+        main: LightMode ? "#000" : "#f3f2fe",
       },
-      type: 'dark',
+      type: LightMode ? "light" : "dark",
     },
   });
 
@@ -26,7 +26,7 @@ const Header = ({ category, setCategory, word, setWord }) => {
         <TextField 
         className="search" 
         id="outlined-basic" 
-        label="Word" 
+        label="Search for Word" 
         value={word}
         onChange={(e) => setWord(e.target.value)}
         />
