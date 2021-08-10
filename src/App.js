@@ -1,46 +1,29 @@
 import { Container, Switch, withStyles } from '@material-ui/core';
-import { grey } from '@material-ui/core/colors';
+import { purple } from '@material-ui/core/colors';
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
-import './App.css';
 import Definitions from './components/Definitions';
 import Header from './components/Header';
 
 function App() {
   const [word, setWord] = useState("");
   const [meanings, setMeanings] = useState([]);
-  const [category, setCategory] = useState("en");
+  const [category, setCategory] = useState("en_US");
   const [LightMode, setLightMode] = useState(false);
 
   const DarkMode = withStyles({
     switchBase: {
-      color: grey[500],
+      color: purple[500],
       '&$checked': {
-        color: grey[300],
+        color: purple[300],
       },
       '&$checked + $track': {
-        backgroundColor: grey[500],
+        backgroundColor: purple[500],
       },
     },
     checked: {},
     track: {},
   })(Switch);
-
-  // const dictionaryApi = async() => {
-  //   try {
-  //     const data = await axios.get(
-  //       `https://api.dictionaryapi.dev/api/v2/entries/${category}/${word}`
-  //     );
-
-  //     setMeanings(data.data);
-
-  //   } catch(error) {
-  //     console.log(error)
-  //   }
-
-  // }
-
-  // console.log(meanings);
   
   useEffect(() => {
     const dictionaryApi = async () => {
@@ -49,14 +32,13 @@ function App() {
 
         setMeanings(data.data);
       };
-
+      
       if (word && !meanings.length) {
         dictionaryApi();
       } else {
         const timeoutId = setTimeout(() => {
           if(word) {
             dictionaryApi();
-            console.log("Call")
           }
         }, 1000);
 

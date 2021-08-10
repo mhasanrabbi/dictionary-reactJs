@@ -18,6 +18,10 @@ const Header = ({ category, setCategory, word, setWord, LightMode }) => {
     setWord("");
   }
 
+  const onSubmit = (event) => {
+    event.preventDefault();
+  }
+
   return (
     <div className="header">
       <span className="title">{word ? word : "Dictionary w/ ReactJS"}</span>
@@ -28,6 +32,7 @@ const Header = ({ category, setCategory, word, setWord, LightMode }) => {
         id="outlined-basic" 
         label="Search for Word" 
         value={word}
+        onSubmit={onSubmit}
         onChange={(e) => setWord(e.target.value)}
         />
         <TextField
@@ -36,6 +41,7 @@ const Header = ({ category, setCategory, word, setWord, LightMode }) => {
           select
           label="Language"
           value={category}
+          onSubmit={onSubmit}
           onChange={(e) => handleChange(e.target.value)}
           helperText="Please select language"
         >

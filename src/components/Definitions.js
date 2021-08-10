@@ -5,7 +5,7 @@ const Definitions = ({ word, category, meanings, LightMode }) => {
   return (
     <div className="meanings">
       {
-        meanings[0] && word && category === 'en' && (
+        meanings[0] && word && category === 'en_US' && (
           <audio src={meanings[0].phonetics[0] && meanings[0].phonetics[0].audio} style={{backgroundColor: "white"}} controls>
             Your Browser doesn't support audio element.
           </audio>
